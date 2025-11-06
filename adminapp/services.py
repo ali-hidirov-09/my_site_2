@@ -60,8 +60,8 @@ def get_teacher():
 def get_student():
     with closing(connection.cursor()) as cursor:
         cursor.execute("""SELECT adminapp_student.id, adminapp_student.first_name, adminapp_student.last_name, 
-        adminapp_student.age, 
-        adminapp_group.name as group_name, adminapp_student.image as image  from adminapp_student
-        left join adminapp_group on adminapp_student.group_id = adminapp_group.id""")
+        adminapp_student.age, adminapp_group.name as group_name, 
+        adminapp_student.image as image  from adminapp_student 
+        left join adminapp_group on adminapp_group.id = adminapp_student.group_id order by adminapp_student.id;""")
         student = dictfetchall(cursor)
         return student
